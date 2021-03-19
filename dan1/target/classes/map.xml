@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.Notes" table="notes" schema="zametki">
+        <id name="idnotes">
+            <column name="idnotes" sql-type="int(11)"/>
+        </id>
+        <property name="notename">
+            <column name="notename" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="content">
+            <column name="content" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+    </class>
+    <class name="ru.NotesHasTags" table="notes_has_tags" schema="zametki">
+        <id name="idnht">
+            <column name="idnht" sql-type="varchar(45)" length="45"/>
+        </id>
+        <many-to-one name="notesByNotesIdnotes" class="ru.Notes">
+            <column name="notes_idnotes"/>
+        </many-to-one>
+    </class>
+    <class name="ru.Tags" table="tags" schema="zametki">
+        <id name="idtags">
+            <column name="idtags" sql-type="int(11)"/>
+        </id>
+        <property name="tag">
+            <column name="tag" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+    </class>
+    <class name="ru.Users" table="users" schema="zametki">
+        <id name="idusers">
+            <column name="idusers" sql-type="int(11)"/>
+        </id>
+        <property name="fio">
+            <column name="fio" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="number">
+            <column name="number" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
